@@ -16,12 +16,12 @@ import ru.yandex.yandexlavka.repository.CourierRepository;
 import ru.yandex.yandexlavka.repository.OffsetBasedPageRequest;
 
 import java.util.List;
+
 @Validated
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class CourierService {
-
     private final CourierRepository courierRepository;
     private final CourierMapper courierMapper;
 
@@ -34,7 +34,7 @@ public class CourierService {
     }
 
     public CourierDto readBy(@NotNull Integer id) {
-        var courier = courierRepository.findById(id).orElseThrow(() -> new NotFoundException("Courier ID: %s not found"));
+        var courier = courierRepository.readBy(id).orElseThrow(() -> new NotFoundException("Courier ID: %s not found".formatted(id)));
 
         return courierMapper.toDto(courier);
     }
@@ -45,6 +45,4 @@ public class CourierService {
 
         return courierMapper.toDto(slice.toList());
     }
-
-
 }

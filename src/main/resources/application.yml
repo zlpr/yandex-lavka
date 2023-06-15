@@ -1,12 +1,43 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:test
-    username:
+    url: jdbc:h2:file:/data/demo;AUTO_SERVER=true
+    username: sa
     password:
     driver-class-name: org.h2.Driver
   jpa:
     hibernate:
       ddl-auto: create
     show-sql: true
+  h2:
+    console.enabled: true
+    console:
+      path: /h2-console
+      settings.trace: false
+      settings.web-allow-others: false
 
-
+resilience4j:
+  ratelimiter:
+    configs:
+      default:
+        registerHealthIndicator: true
+        limitForPeriod: 10
+        limitRefreshPeriod: 1s
+        timeoutDuration: 0
+        eventConsumerBufferSize: 100
+    instances:
+      couriers.saveCouriers:
+        baseConfig: default
+      couriers.readBy:
+        baseConfig: default
+      couriers.readAll:
+        baseConfig: default
+      couriers.readMetaInfo:
+        baseConfig: default
+      orders.saveOrders:
+        baseConfig: default
+      orders.complete:
+        baseConfig: default
+      orders.readAll:
+        baseConfig: default
+      orders.readBy:
+        baseConfig: default

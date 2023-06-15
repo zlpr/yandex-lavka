@@ -13,51 +13,32 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
+import ru.yandex.yandexlavka.model.EOrderStatus;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
 @Table(name = "orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private Float weight;
-
     private Region region;
-
     private Integer cost;
-
     private LocalDateTime completedTime;
-
+    private EOrderStatus status = EOrderStatus.CREATED;
     @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(name="deliveryHours")
     private List<TimeInterval> deliveryHours = new ArrayList<>();
-
     @ManyToOne(fetch = FetchType.LAZY)
-    @ToString.Exclude
     private Courier courier;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Order order = (Order) o;
-        return Objects.equals(id, order.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    private GroupOrder groupOrder;
 }

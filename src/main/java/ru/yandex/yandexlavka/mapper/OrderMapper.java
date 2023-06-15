@@ -19,7 +19,7 @@ import java.util.List;
         mappingInheritanceStrategy = MappingInheritanceStrategy.AUTO_INHERIT_FROM_CONFIG,
         uses = {RegionMapper.class, TimeIntervalMapper.class})
 public interface OrderMapper {
-    Order toEntity(OrderDto orderDto);
+    Order toEntity(CreateOrderDto orderDto);
 
     OrderDto toDto(Order order);
 

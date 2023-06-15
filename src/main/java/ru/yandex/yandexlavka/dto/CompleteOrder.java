@@ -16,7 +16,7 @@ public class CompleteOrder {
     @JsonProperty("order_id")
     Integer orderId;
     @NotNull
-    @JsonProperty("completed_time")
+    @JsonProperty("complete_time")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     LocalDateTime completedTime;
 }

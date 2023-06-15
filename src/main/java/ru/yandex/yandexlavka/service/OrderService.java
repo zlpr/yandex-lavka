@@ -15,7 +15,7 @@ import ru.yandex.yandexlavka.dto.OrderDto;
 import ru.yandex.yandexlavka.exception.BadRequestException;
 import ru.yandex.yandexlavka.exception.NotFoundException;
 import ru.yandex.yandexlavka.mapper.OrderMapper;
-import ru.yandex.yandexlavka.repository.CourierRepository;
+import ru.yandex.yandexlavka.model.EOrderStatus;
 import ru.yandex.yandexlavka.repository.OffsetBasedPageRequest;
 import ru.yandex.yandexlavka.repository.OrderRepository;
 
@@ -37,7 +37,7 @@ public class OrderService {
     }
 
     public OrderDto readBy(@NotNull Integer id) {
-        var order = orderRepository.findById(id).orElseThrow(() -> new NotFoundException("Order ID: %s not found".formatted(id)));
+        var order = orderRepository.readBy(id).orElseThrow(() -> new NotFoundException("Order ID: %s not found".formatted(id)));
 
         return orderMapper.toDto(order);
     }
@@ -59,13 +59,11 @@ public class OrderService {
     private OrderDto complete(CompleteOrder completeOrder) {
         var order = orderRepository
                 .readByIdAndCourierId(completeOrder.getOrderId(), completeOrder.getCourierId())
-                .orElseThrow(() -> new BadRequestException("Bad Request"));
-        if (order.getCompletedTime() == null) {
-            order.setCompletedTime(completeOrder.getCompletedTime());
-        }
+                .orElseThrow(()-> new BadRequestException("Bad Request"));
 
+        order.setCompletedTime(completeOrder.getCompletedTime());
+        order.setStatus(EOrderStatus.COMPLETED);
         return orderMapper.toDto(order);
     }
-
 
 }

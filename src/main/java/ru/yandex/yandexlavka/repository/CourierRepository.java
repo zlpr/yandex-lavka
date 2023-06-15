@@ -6,7 +6,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import ru.yandex.yandexlavka.entity.Courier;
 
+import java.util.Optional;
+
 @Repository
 public interface CourierRepository extends JpaRepository<Courier, Integer> {
     Slice<Courier> readAllBy(Pageable pageable);
+
+   default Optional<Courier> readBy(Integer courierId){
+       return this.findById(courierId);
+   }
 }

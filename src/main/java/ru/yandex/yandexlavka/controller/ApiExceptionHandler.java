@@ -1,5 +1,6 @@
 package ru.yandex.yandexlavka.controller;
 
+import io.github.resilience4j.ratelimiter.RequestNotPermitted;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
@@ -33,6 +34,12 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<?> handleConstraintValidationException(ConstraintViolationException e) {
         log.warn(e.getMessage(),e);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(EMPTY_BODY);
+    }
+
+    @ExceptionHandler({ RequestNotPermitted.class })
+    public ResponseEntity<?> requestNotPermitted(RequestNotPermitted e) {
+        log.warn(e.getMessage(),e);
+        return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).body(EMPTY_BODY);
     }
 
     @ExceptionHandler(NotFoundException.class)

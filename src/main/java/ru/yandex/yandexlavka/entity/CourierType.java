@@ -17,7 +17,6 @@ import ru.yandex.yandexlavka.model.ECourierType;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @NoArgsConstructor
@@ -33,27 +32,10 @@ public class CourierType {
     @Column(unique = true)
     private ECourierType type;
 
+    private Ratio ratio;
+
+    private Limit limit;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "type")
     private List<Courier> couriers = new ArrayList<>();
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CourierType that = (CourierType) o;
-        return Objects.equals(id, that.id) && type == that.type;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, type);
-    }
-
-    @Override
-    public String toString() {
-        return "CourierType{" +
-                "id=" + id +
-                ", type=" + type +
-                '}';
-    }
 }
