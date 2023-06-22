@@ -2,6 +2,9 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.1.0'
     id 'io.spring.dependency-management' version '1.1.0'
+    id "io.freefair.lombok" version "6.3.0"
+
+
 }
 
 group = 'ru.yandex'
@@ -22,6 +25,7 @@ ext {
     mapstructVersion = '1.5.3.Final'
     lombokMapstructBindingVersion = '0.2.0'
     resilience4jVersion = '2.0.2'
+    testcontainers = '1.18.3'
 }
 
 dependencies {
@@ -30,7 +34,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-aop'
-
+    implementation 'org.postgresql:postgresql'
+    implementation 'org.liquibase:liquibase-core'
     implementation "io.github.resilience4j:resilience4j-spring-boot3:${resilience4jVersion}"
 
     compileOnly 'org.projectlombok:lombok'
@@ -40,10 +45,10 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     annotationProcessor "org.projectlombok:lombok-mapstruct-binding:${lombokMapstructBindingVersion}"
 
-    implementation 'com.h2database:h2'
+
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'com.h2database:h2'
+    testImplementation "org.testcontainers:postgresql:${testcontainers}"
 }
 
 tasks.named('test') {

@@ -1,0 +1,107 @@
+{
+  "couriers": [
+    {
+      "courier_type": "FOOT",
+      "regions": [
+        1,
+        2,
+        3
+      ],
+      "working_hours": [
+        "18:00-19:00",
+        "15:00-16:00",
+        "12:00-13:00"
+      ]
+    },
+    {
+      "courier_type": "BIKE",
+      "regions": [
+        77,
+        4,
+        1,
+        78
+      ],
+      "working_hours": [
+        "15:00-16:00"
+      ]
+    },
+    {
+      "courier_type": "AUTO",
+      "regions": [
+        77,
+        5
+      ],
+      "working_hours": [
+        "09:00-13:00"
+      ]
+    },
+    {
+      "courier_type": "BIKE",
+      "regions": [
+        3,
+        8
+      ],
+      "working_hours": [
+        "10:00-12:00",
+        "16:00-17:00"
+      ]
+    },
+    {
+      "courier_type": "FOOT",
+      "regions": [
+        6
+      ],
+      "working_hours": [
+        "15:00-15:30",
+        "21:00-21:30"
+      ]
+    },
+    {
+      "courier_type": "FOOT",
+      "regions": [
+        42,
+        43
+      ],
+      "working_hours": [
+        "17:00-19:30",
+        "22:00-23:30"
+      ]
+    },
+    {
+      "courier_type": "BIKE",
+      "regions": [
+        8,
+        11,
+        17
+      ],
+      "working_hours": [
+        "13:00-19:30",
+        "22:00-23:30"
+      ]
+    },
+    {
+      "courier_type": "AUTO",
+      "regions": [
+        5,
+        23,
+        29
+      ],
+      "working_hours": [
+        "11:00-12:30",
+        "19:00-21:30"
+      ]
+    },
+    {
+      "courier_type": "AUTO",
+      "regions": [
+        3,
+        4,
+        19
+      ],
+      "working_hours": [
+        "09:00-11:30",
+        "16:00-20:30"
+      ]
+    }
+  ]
+}

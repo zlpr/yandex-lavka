@@ -1,0 +1,5 @@
+-- INSERT INTO courier_type(id, type, rating, earning, weight, orders, regions, time_first, time_others)
+-- VALUES (1, 'FOOT', 1, 4, 10, 2, 1, 25, 10),
+--        (2, 'BIKE', 2, 3, 20, 4, 2, 12, 80),
+--        (3, 'AUTO', 3, 2, 40, 7, 3, 8, 4);
+-- SELECT SETVAL('courier_type_id_seq', (SELECT MAX(id) FROM courier_type));

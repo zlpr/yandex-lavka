@@ -18,12 +18,15 @@ public class OrderAssignmentServiceImpl implements OrderAssignmentService {
     private final CourierRepository courierRepository;
 
     @Override
-    public OrderAssignResponse assign(LocalDate date) {
+    public OrderAssignResponse assignOrders(LocalDate date) {
+        if (date == null) {
+            date = LocalDate.now();
+        }
         return null;
     }
 
     @Override
-    public OrderAssignResponse assignments(LocalDate date, Integer courierId) {
+    public OrderAssignResponse readAssignedOrdersBy(Integer courierId, LocalDate date) {
         return null;
     }
 }

@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.yandex.yandexlavka.dto.CompleteOrderRequestDto;
 import ru.yandex.yandexlavka.dto.CreateOrderRequest;
+import ru.yandex.yandexlavka.dto.OrderAssignResponse;
 import ru.yandex.yandexlavka.dto.OrderDto;
+import ru.yandex.yandexlavka.service.OrderAssignmentService;
 import ru.yandex.yandexlavka.service.OrderService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -21,6 +24,7 @@ import java.util.List;
 @RequestMapping("orders")
 public class OrderController {
     private final OrderService orderService;
+    private final OrderAssignmentService orderAssignmentService;
 
     @RateLimiter(name = "orders.saveOrders")
     @PostMapping
@@ -32,6 +36,12 @@ public class OrderController {
     @PostMapping("complete")
     public List<OrderDto> complete(@RequestBody CompleteOrderRequestDto request){
         return orderService.complete(request);
+    }
+
+    @RateLimiter(name = "orders.assign")
+    @PostMapping("assign")
+    private OrderAssignResponse assign(@RequestParam LocalDate date){
+        return orderAssignmentService.assignOrders(date);
     }
 
     @RateLimiter(name = "orders.readAll")

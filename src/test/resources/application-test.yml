@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    username: test
+    password: test
+  jpa:
+    properties.hibernate:
+      hbm2ddl.auto: validate
+    open-in-view: false
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.orm.jdbc.bind: trace
+    org.hibernate.stat: debug
+    org.hibernate.SQL_SLOW: info
+

@@ -6,6 +6,6 @@ import java.time.LocalDate;
 
 public interface OrderAssignmentService {
 
-    OrderAssignResponse assign(LocalDate date);
-    OrderAssignResponse assignments(LocalDate date, Integer courierId);
+    OrderAssignResponse assignOrders(LocalDate date);
+    OrderAssignResponse readAssignedOrdersBy(Integer courierId, LocalDate date);
 }

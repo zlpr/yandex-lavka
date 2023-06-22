@@ -1,19 +1,15 @@
 spring:
   datasource:
-    url: jdbc:h2:file:/data/demo;AUTO_SERVER=true
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
+    url: jdbc:postgresql://${POSTGRES_SERVER}:${POSTGRES_PORT}/${POSTGRES_DB}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+    driver-class-name: org.postgresql.Driver
   jpa:
-    hibernate:
-      ddl-auto: create
-    show-sql: true
-  h2:
-    console.enabled: true
-    console:
-      path: /h2-console
-      settings.trace: false
-      settings.web-allow-others: false
+    properties.hibernate:
+      show_sql: true
+      format_sql: true
+      hbm2ddl.auto: validate
+    open-in-view: false
 
 resilience4j:
   ratelimiter:
@@ -33,6 +29,8 @@ resilience4j:
         baseConfig: default
       couriers.readMetaInfo:
         baseConfig: default
+      couriers.assignments:
+        baseConfig: default
       orders.saveOrders:
         baseConfig: default
       orders.complete:
@@ -40,4 +38,6 @@ resilience4j:
       orders.readAll:
         baseConfig: default
       orders.readBy:
+        baseConfig: default
+      orders.assign:
         baseConfig: default

@@ -27,7 +27,6 @@ public class CourierType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
-
     @Enumerated(EnumType.STRING)
     @Column(unique = true)
     private ECourierType type;

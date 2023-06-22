@@ -8,6 +8,6 @@ import ru.yandex.yandexlavka.model.ECourierType;
 import java.util.Optional;
 
 public interface CourierTypeRepository extends JpaRepository<CourierType, Integer> {
-@Query("select c from CourierType c where c.type =:t ")
+    @Query("select c from CourierType c where c.type =:t ")
     Optional<CourierType> readBy(ECourierType t);
 }
